@@ -1,0 +1,29 @@
+{
+  "name": "meanstack",
+  "version": "1.0.0",
+  "description": "\"# Mean-stack\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prasanth-ECE/Mean-stack.git"
+  },
+  "keywords": [
+    "Mean",
+    "stack",
+    "application"
+  ],
+  "author": "Prasanth S",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prasanth-ECE/Mean-stack/issues"
+  },
+  "homepage": "https://github.com/Prasanth-ECE/Mean-stack#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.0",
+    "nodemon": "^1.14.11"
+  }
+}
