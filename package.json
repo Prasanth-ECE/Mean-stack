@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/Prasanth-ECE/Mean-stack#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mongoose": "^5.0.0",
+    "multer": "^1.3.0",
     "nodemon": "^1.14.11"
   }
 }
