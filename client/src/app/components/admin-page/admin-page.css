@@ -1,0 +1,46 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.time{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.custom-day {      
+      text-align: center;
+      padding: 0.185rem 0.25rem;
+      border-radius: 0.25rem;
+      display: inline-block;
+      width: 2rem;
+    }
+    .custom-day:hover, .custom-day.focused {
+      background-color: #e6e6e6;
+    }
+    .weekend {
+      background-color: #f0ad4e;
+      border-radius: 1rem;
+      color: white;
+    }
+    .hidden {
+      display: none;
+    }

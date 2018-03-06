@@ -1,0 +1,14 @@
+<form [formGroup]="loginform" (ngSubmit)="login()">
+
+<div class="form-group">
+                    <label for="name">User name</label>
+                    <input type="text" class="form-control" name="name" formControlName="name" placeholder="User Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">password</label>
+                    <input type="password" class="form-control" name="password" formControlName="password" placeholder="password">
+                  </div>
+  <input type="checkbox" value="1" formControlName="validate"/>
+  <button type="submit" [disabled]="!loginform.valid" class="btn">
+    login</button>
+</form>

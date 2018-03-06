@@ -1,0 +1,13 @@
+
+<div class="card text-white bg-dark mb-3" style="max-width: 20rem;"  *ngFor="let user of users" (click)="viewdetails(user)">
+        <div class="card-header">{{user.name}} <button type="button" class="close" data-dismiss="alert">×</button> </div>
+        
+        <div class="card-body" *ngFor="let date of user.date">
+                <h4 class="card-title">{{date.year}} - {{date.month}} - {{date.day}}</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+</div>
+
+
+
+

@@ -1,0 +1,151 @@
+<div class="bs-docs-section" *ngIf="!notshow" >
+  <div class="page-header">
+    <h3 id="tables">{{errorMsg}}</h3>
+    </div>
+</div>
+<div class="bs-docs-section" *ngIf="!updateshow && notshow" >
+
+    <div class="row" *ngFor="let user of details">
+    <div class="col-lg-12">
+    <div class="page-header">
+    <h3 id="tables">Interview Detailed  {{gendervalue}}</h3>
+    </div>
+    
+    <div class="bs-component">
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active">
+        <td>Name</td>
+        <td>{{user.name}}</td>
+      </tr>
+      <tr >
+          <td>Phone</td>
+          <td>{{user.phone}}</td>
+      </tr>
+      <tr class="table-active">
+          <td>Knowledge</td>
+          <td>{{user.department}}</td>
+      </tr>
+      <tr >
+          <td>Interviewer</td>
+          <td>{{user.interviewer}}</td>
+      </tr>
+      <tr class="table-active">
+          <td>Interviewtype</td>
+          <td>{{user.interviewtype}}</td>
+      </tr>
+      <tr *ngFor="let date of user.date">
+          <td>Date</td>
+          <td>{{date.year}} - {{date.month}} - {{date.day}}</td>
+      </tr>
+      <tr class="table-active" *ngFor="let time of user.time">
+          <td>Time</td>
+          <td>{{time.hour}} : 0{{time.minute}} - 0{{time.second}}</td>
+      </tr>
+
+    </tbody>
+    </table> 
+    <div class="card-footer bg-transparent">
+        <div class="pull-right" *ngIf="!confirmDelete">
+        <button class="btn btn-outline-danger" (click)="delete()" *ngIf="service.adminaccess()" >
+          <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+        </button>
+        <button class="btn btn-outline-warning" (click)="update()">
+          <i class="fa fa-pencil" aria-hidden="true"></i> Update
+        </button>
+      </div>
+        <div class="pull-right" *ngIf="confirmDelete">
+          <button class="btn btn-outline-danger" (click)="deleteConfirmed()">
+            <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
+          </button>
+          <button class="btn btn-outline-info" (click)="abortDelete()">
+            <i class="fa fa-times" aria-hidden="true"></i> Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+    <div class="row" *ngIf="updateshow">
+      <div class="col-md-12" *ngFor="let user of details">
+
+              <form [formGroup]="updateInterview" (ngSubmit)="updateInterview()">
+              <div class="example-container">
+                 <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Name" value="{{user.name}}" formControlName="name">
+                </mat-form-field> 
+              <mat-form-field>
+                <mat-select placeholder="Gender" formControlName="gender">
+                  <mat-option value="female">Female</mat-option>
+                  <mat-option value="male">Male</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Phone" value="{{user.phone}}" formControlName="phone">
+                </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Technical Skills" value="{{user.department}}" formControlName="department"></textarea>
+                </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Type of Interview" [(value)]="interviewselect" formControlName="interviewtype">
+                  <mat-option value="F2F">F2F</mat-option>
+                  <mat-option value="Systemtest">System test</mat-option>
+                </mat-select>
+              </mat-form-field>
+               <mat-form-field>
+                <mat-select placeholder="Interviewer" [(value)]="interviewersel" formControlName="interviewer">
+                  <mat-option value="Person1">Person 1</mat-option>
+                  <mat-option value="Person2">Person 2</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <ngb-timepicker [(ngModel)]="time" formControlName="time"></ngb-timepicker>
+              <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" formControlName="date"
+                           name="dp" [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                        <img src="/assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">
+                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.focused]="focused"
+                      [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                  {{ date.day }}
+                </span>
+              </ng-template>
+                <button type="submit" class="btn" [disabled]="!updateInterview.valid">
+                  Create New Interview</button>
+                  </div>
+              </form>
+    </div>
+    <div class="card-footer bg-transparent">
+      <div class="pull-right" *ngIf="!confirmDelete">
+      <button class="btn btn-outline-danger" (click)="updatecancel()" *ngIf="service.adminaccess()" >
+        <i class="fa fa-trash-o" aria-hidden="true"></i> Cancel
+      </button>
+      <button class="btn btn-outline-warning" (click)="update()">
+        <i class="fa fa-pencil" aria-hidden="true"></i> Update
+      </button>
+    </div>
+      <div class="pull-right" *ngIf="confirmDelete">
+        <button class="btn btn-outline-danger" (click)="deleteConfirmed()">
+          <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
+        </button>
+        <button class="btn btn-outline-info" (click)="abortDelete()">
+          <i class="fa fa-times" aria-hidden="true"></i> Cancel
+        </button>
+      </div>
+    </div>
+      </div>
+      
